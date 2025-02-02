@@ -23,11 +23,14 @@ class Program
             if (selection_int == Menu.options.WRITE) {
                 Console.WriteLine("Please enter the date for today: ");
                 string date = Console.ReadLine();
+                Console.WriteLine("What was your overall mood for today?: ");
+                string mood = Console.ReadLine();
                 string randomPrompt = promptManager.GetRandomPrompt();
                 Console.WriteLine(randomPrompt);
                 string text = Console.ReadLine();
                 Entry entry = new Entry();
                 entry._date = date;
+                entry._mood = mood;
                 entry._prompt = randomPrompt;
                 entry._text = text;
                 journal.AddEntry(entry);
@@ -69,11 +72,13 @@ class Journal
             string[] parts = line.Split("|");
 
             string date = parts[0];
-            string prompt = parts[1];
-            string text = parts[2];
+            string mood = parts[1];
+            string prompt = parts[2];
+            string text = parts[3];
 
             Entry entry = new Entry();
             entry._date = date;
+            entry._mood = mood;
             entry._prompt = prompt;
             entry._text = text;
 
@@ -88,7 +93,7 @@ class Journal
         {
             foreach (Entry entry in entries)
             {
-                outputFile.WriteLine($"{entry._date}|{entry._prompt}|{entry._text}");
+                outputFile.WriteLine($"{entry._date}|{entry._mood}|{entry._prompt}|{entry._text}");
             }
         }
     }
@@ -100,7 +105,9 @@ class Journal
     {
         for (int i = 0; i < entries.Count; i++)
         {
+            Console.WriteLine("");
             Console.WriteLine(entries[i]._date);
+            Console.WriteLine(entries[i]._mood);
             Console.WriteLine(entries[i]._prompt);
             Console.WriteLine(entries[i]._text);
             Console.WriteLine("");
@@ -112,6 +119,7 @@ class Journal
 class Entry
 {
     public string _date;
+    public string _mood;
     public string _prompt;
     public string _text;
     public void Display()
