@@ -1,0 +1,25 @@
+Main()
+{
+    scriptures = List scripture
+    scripture = List verses
+    verse = List words
+    word = String
+
+
+}
+
+Display(verse) {
+    while True {
+        if input = 'blank' {
+            hideWords(verse)
+        }
+        else {
+            return True
+        }
+    }
+}
+
+hideWords(verse) {
+
+}
+
